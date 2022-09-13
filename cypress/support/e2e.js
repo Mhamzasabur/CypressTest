@@ -15,6 +15,19 @@
 
 // Import commands.js using ES2015 syntax:
 import "./commands";
+import "./testRailAPIs";
+
+const cache = {
+  id: {},
+};
+module.exports = (on, config) => {
+  on("task", {
+    putInCache: ({ key, data }) => {
+      return (cache[key] = data);
+    },
+    getCache: (key) => cache[key],
+  });
+};
 //("test");
 
 // Alternatively you can use CommonJS syntax:
